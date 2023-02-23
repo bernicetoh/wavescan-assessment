@@ -1,0 +1,13 @@
+label {
+  color: white;
+  display: block;
+}
+
+.select {
+  /* width: 150px; */
+  background-color: white;
+  border: none;
+  border-radius: 8px;
+  height: 30px;
+  padding: 2.5px 10px;
+}

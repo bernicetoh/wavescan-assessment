@@ -1,0 +1,25 @@
+.logo-container {
+  /* width: 100%; */
+  display: flex;
+  position: absolute;
+  width: 200px;
+  align-self: center;
+  justify-content: center;
+  padding: 20px 10px;
+  top: 3%;
+  background-color: transparent;
+}
+
+.img-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+}
+
+.logo-img {
+  width: 150px;
+  align-self: center;
+  justify-content: center;
+  background-color: transparent;
+}

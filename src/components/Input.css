@@ -1,0 +1,13 @@
+label {
+  color: white;
+  display: block;
+}
+
+input {
+  /* width: 150px; */
+  background-color: white;
+  border: none;
+  border-radius: 8px;
+  height: 25px;
+  padding: 2.5px 10px;
+}

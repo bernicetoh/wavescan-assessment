@@ -1,0 +1,107 @@
+#form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0px 20px;
+  width: 100%;
+}
+
+.form-container {
+  display: flex;
+  /* height: ; */
+  width: 90vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  padding: 30px 30px;
+}
+
+.dimensions-container {
+  display: flex;
+  flex-direction: column;
+  width: 300;
+}
+
+.dimensions-input-containers {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.button-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+form {
+  padding-top: 80px;
+  max-width: 340px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.scanBtn {
+  border: none;
+  padding: 2.5px 10px;
+  border-radius: 8px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #c7823b;
+  width: 315px;
+  margin-top: 10;
+  margin-bottom: 20;
+  color: white;
+}
+
+.scanBtn:hover {
+  cursor: pointer;
+}
+
+h3 {
+  background-color: transparent;
+  color: white;
+  position: relative;
+}
+
+p {
+  color: red;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+input {
+  background-color: white;
+  border: none;
+  border-radius: 8px;
+  height: 25px;
+  padding: 5px 10px;
+  width: 300px;
+}
+
+label {
+  padding-bottom: 5px;
+  color: white;
+  text-align: left;
+  width: 100%;
+}
+
+select {
+  width: 320px;
+  background-color: white;
+  border: none;
+  border-radius: 8px;
+  height: 35px;
+  padding: 2.5px 10px;
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
