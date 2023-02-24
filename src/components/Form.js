@@ -9,7 +9,7 @@ function Form({ navigate }) {
   const [y, setY] = useState(0);
 
   const [errors, setErrors] = useState({});
-  const [isSubmit, setIsSubmit] = useState(false);
+  const [isValid, setIsValid] = useState(false);
 
   const validate = (pname, scannerFreq, x, y) => {
     const errors = {};
@@ -35,41 +35,44 @@ function Form({ navigate }) {
     { value: "Arm", label: "Arm" },
   ];
 
-  const handleOptionsInput = (selected) => {
-    setScanMode(selected.target.value.toUpperCase());
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrors(validate(pname, scannerFreq, x, y));
-    const toSend = {
-      projectName: pname,
-      scanningMode: scanMode.toUpperCase(),
-      scanDimensionsX: x,
-      scanDimensionsY: y,
-      scannerFrequency: scannerFreq,
-    };
-    try {
-      const result = await fetch(
-        "https://wavescan-internship.saurabhmudgal.repl.co/submitForm",
-        {
-          method: "POST",
-          body: JSON.stringify(toSend),
-          headers: {
-            "Content-type": "application/json",
-          },
+    if (errors.length !== 0) {
+      setIsValid(true);
+    }
+    if (isValid) {
+      const toSend = {
+        projectName: pname,
+        scanningMode: scanMode.toUpperCase(),
+        scanDimensionsX: x,
+        scanDimensionsY: y,
+        scannerFrequency: scannerFreq,
+      };
+      try {
+        const result = await fetch(
+          "https://wavescan-internship.saurabhmudgal.repl.co/submitForm",
+          {
+            method: "POST",
+            body: JSON.stringify(toSend),
+            headers: {
+              "Content-type": "application/json",
+            },
+          }
+        );
+        const statusCode = result.status;
+        console.log(statusCode);
+        if (statusCode === 200) {
+          console.log("success!");
+          navigate("./view", { replace: true });
+        } else {
+          console.log("ERROR 404: bad request");
         }
-      );
-      const statusCode = result.status;
-      console.log(statusCode);
-      if (statusCode === 200) {
-        console.log("success!");
-        navigate("./view", { replace: true });
-      } else {
-        console.log("ERROR 404: bad request");
+      } catch (e) {
+        console.log(e);
       }
-    } catch (e) {
-      console.log(e);
+    } else {
+      alert("Invalid inputs!");
     }
   };
 
