@@ -8,7 +8,6 @@
 
 .form-container {
   display: flex;
-  /* height: ; */
   width: 90vh;
   flex-direction: column;
   justify-content: center;
