@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/static/css/main.9c8d02c6.css",
+    "main.js": "/static/js/main.bced916b.js",
+    "static/media/wavescan-logo.png": "/static/media/wavescan-logo.cf79af6822f5074a4b3e.png",
+    "index.html": "/index.html",
+    "main.9c8d02c6.css.map": "/static/css/main.9c8d02c6.css.map",
+    "main.bced916b.js.map": "/static/js/main.bced916b.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9c8d02c6.css",
+    "static/js/main.bced916b.js"
+  ]
+}
