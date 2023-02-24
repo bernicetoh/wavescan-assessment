@@ -2,31 +2,6 @@ import React, { useState } from "react";
 import "./Form.css";
 
 function Form({ navigate }) {
-  const [pname, setPname] = useState("");
-  const [scannerFreq, setScannerFreq] = useState(0);
-  const [scanMode, setScanMode] = useState("");
-  const [x, setX] = useState(0);
-  const [y, setY] = useState(0);
-
-  const [errors, setErrors] = useState({});
-  const [isValid, setIsValid] = useState(false);
-
-  const validate = (pname, scannerFreq, x, y) => {
-    const errors = {};
-    if (pname.length <= 3) {
-      errors.pname = "Project name has to be more than 3 characters";
-    }
-
-    if (x < 1 || y < 1) {
-      errors.dimension = "Dimensions have to be more than or equals to 1";
-    }
-
-    if (scannerFreq < 1) {
-      errors.freq = "Scanner frequency has to be more than or equals to 1";
-    }
-    return errors;
-  };
-
   const scannerModeOptions = [
     { value: "Gantry", label: "Gantry" },
     { value: "Crawler", label: "Crawler" },
@@ -35,19 +10,43 @@ function Form({ navigate }) {
     { value: "Arm", label: "Arm" },
   ];
 
+  const [pname, setPname] = useState("");
+  const [mode, setMode] = useState(scannerModeOptions[0].value);
+  const [x, setX] = useState(null);
+  const [y, setY] = useState(null);
+  const [freq, setFreq] = useState(null);
+  const [errors, setErrors] = useState({});
+  const [isSubmit, setIsSubmit] = useState(false);
+
+  const validate = () => {
+    const errors = {};
+    if (pname.length <= 3) {
+      errors.pname = "Project name has to be more than 3 characters";
+    }
+
+    if (!x || !y || x < 1 || y < 1) {
+      errors.dimension = "Dimensions have to be more than or equals to 1";
+    }
+    if (!freq || freq < 1) {
+      errors.freq = "Scanner frequency has to be more than or equals to 1";
+    }
+    return errors;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setErrors(validate(pname, scannerFreq, x, y));
-    if (errors.length !== 0) {
-      setIsValid(true);
+    setErrors(validate());
+    if (Object.keys(errors).length === 0) {
+      setIsSubmit(true);
     }
-    if (isValid) {
+
+    if (isSubmit) {
       const toSend = {
         projectName: pname,
-        scanningMode: scanMode.toUpperCase(),
+        scanningMode: mode.toUpperCase(),
         scanDimensionsX: x,
         scanDimensionsY: y,
-        scannerFrequency: scannerFreq,
+        scannerFrequency: freq,
       };
       try {
         const result = await fetch(
@@ -61,7 +60,6 @@ function Form({ navigate }) {
           }
         );
         const statusCode = result.status;
-        console.log(statusCode);
         if (statusCode === 200) {
           console.log("success!");
           navigate("./view", { replace: true });
@@ -88,8 +86,8 @@ function Form({ navigate }) {
             <label>Project Name</label>
             <input
               type={"text"}
-              onChange={(text) => setPname(text.target.value)}
-              value={pname.target}
+              onChange={(t) => setPname(t.target.value)}
+              name="pname"
             />
             <p>{errors.pname}</p>
           </div>
@@ -98,11 +96,9 @@ function Form({ navigate }) {
             <label>Scanning Mode</label>
             <select
               className="select"
-              value={scanMode}
-              onChange={(s) => {
-                console.log(s.target.value.toUpperCase());
-                setScanMode(s.target.value);
-              }}
+              value={mode}
+              onChange={(t) => setMode(t.target.value)}
+              name="mode"
             >
               {scannerModeOptions.map((op) => {
                 return (
@@ -126,8 +122,13 @@ function Form({ navigate }) {
                 <input
                   style={{ width: 130 }}
                   type={"number"}
-                  onChange={(text) => setX(parseInt(text.target.value))}
+                  onChange={(t) =>
+                    t.target.value === ""
+                      ? setX(0)
+                      : setX(parseInt(t.target.value))
+                  }
                   placeholder={"X"}
+                  name="x"
                 />
               </div>
 
@@ -135,8 +136,13 @@ function Form({ navigate }) {
                 <input
                   type={"number"}
                   style={{ width: 130 }}
-                  onChange={(text) => setY(parseInt(text.target.value))}
+                  onChange={(t) =>
+                    t.target.value === ""
+                      ? setY(0)
+                      : setY(parseInt(t.target.value))
+                  }
                   placeholder={"Y"}
+                  name="y"
                 />
               </div>
             </div>
@@ -147,7 +153,11 @@ function Form({ navigate }) {
             <input
               step={0.1}
               type={"number"}
-              onChange={(text) => setScannerFreq(parseFloat(text.target.value))}
+              onChange={(t) =>
+                t.target.value === ""
+                  ? setFreq(0)
+                  : setFreq(parseFloat(t.target.value))
+              }
             />
             <p>{errors.freq}</p>
           </div>

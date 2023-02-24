@@ -7,8 +7,8 @@ function RouteSwitch() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<InputPage />} />
-        <Route path="/view" element={<ViewPage />} />
+        <Route path="/wavescan" element={<InputPage />} />
+        <Route path="/wavescan/view" element={<ViewPage />} />
       </Routes>
     </BrowserRouter>
   );

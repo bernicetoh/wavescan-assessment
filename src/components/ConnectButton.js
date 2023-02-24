@@ -12,7 +12,7 @@ function ConnectButton() {
   };
   return (
     <button
-      className={"button" && isConnected}
+      className={"button"}
       onClick={toggleBtn}
       style={
         isConnected

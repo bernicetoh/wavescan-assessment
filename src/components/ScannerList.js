@@ -12,47 +12,48 @@ function ScannerList({ navigate }) {
         );
         const resultInJson = await result.json();
         setScanners(resultInJson);
-        console.log(resultInJson);
       } catch (e) {
         console.log(e);
       }
     };
     fetchData();
-    console.log(scanners.length);
   }, []);
 
   return (
     <div className="scanner-list">
       <div className="scanner-list-container">
         <div className="top-section">
-          <button className="backBtn" onClick={() => navigate("/")}>
-            <i class="fa-solid fa-arrow-left"></i>
+          <button className="backBtn" onClick={() => navigate("/wavescan")}>
+            <i className="fa-solid fa-arrow-left"></i>
           </button>
           <h2>Scanners found: {scanners.length}</h2>
         </div>
 
         <table>
-          <tr>
-            <th>Scanner Name</th>
-            <th>IP Address</th>
-            <th>Scanner Speed</th>
-            <th>Status</th>
-            <th></th>
-          </tr>
-
-          {scanners.map((sc, key) => {
-            return (
-              <tr key={key}>
-                <td>{sc.scannerName}</td>
-                <td>{sc.ipAddress}</td>
-                <td>{sc.scannerSpeed}</td>
-                <td>{sc.isAvailable}</td>
-                <td>
-                  <ConnectButton />
-                </td>
-              </tr>
-            );
-          })}
+          <thead>
+            <tr>
+              <th>Scanner Name</th>
+              <th>IP Address</th>
+              <th>Scanner Speed</th>
+              <th>Status</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {scanners.map((sc, key) => {
+              return (
+                <tr key={key}>
+                  <td>{sc.scannerName}</td>
+                  <td>{sc.ipAddress}</td>
+                  <td>{sc.scannerSpeed}</td>
+                  <td>{sc.isAvailable}</td>
+                  <td>
+                    <ConnectButton />
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
         </table>
       </div>
     </div>
