@@ -18,7 +18,7 @@ function Form({ navigate }) {
     }
 
     if (x < 1 || y < 1) {
-      errors.dimension = "Dimension have to be more than or equals to 1";
+      errors.dimension = "Dimensions have to be more than or equals to 1";
     }
 
     if (scannerFreq < 1) {
