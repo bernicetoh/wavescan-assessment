@@ -84,7 +84,7 @@ function Form({ navigate }) {
             handleSubmit(e);
           }}
         >
-          <div className="input-container">
+          <div className="input-container" style={{ paddingBottom: 20 }}>
             <label>Project Name</label>
             <input
               type={"text"}
