@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import "./Form.css";
 
 function Form({ navigate }) {
@@ -12,35 +13,36 @@ function Form({ navigate }) {
 
   const [pname, setPname] = useState("");
   const [mode, setMode] = useState(scannerModeOptions[0].value);
-  const [x, setX] = useState(null);
-  const [y, setY] = useState(null);
-  const [freq, setFreq] = useState(null);
-  const [errors, setErrors] = useState({});
-  const [isSubmit, setIsSubmit] = useState(false);
+  const [x, setX] = useState(0);
+  const [y, setY] = useState(0);
+  const [freq, setFreq] = useState(0);
+  const [formErrors, setFormErrors] = useState({});
 
   const validate = () => {
-    const errors = {};
+    const errorsNow = {};
+
     if (pname.length <= 3) {
-      errors.pname = "Project name has to be more than 3 characters";
+      errorsNow.pname = "Project name has to be more than 3 characters";
     }
 
-    if (!x || !y || x < 1 || y < 1) {
-      errors.dimension = "Dimensions have to be more than or equals to 1";
+    if (x < 1 || y < 1) {
+      errorsNow.dimension = "Dimensions have to be more than or equals to 1";
     }
-    if (!freq || freq < 1) {
-      errors.freq = "Scanner frequency has to be more than or equals to 1";
+    if (freq < 1) {
+      errorsNow.freq = "Scanner frequency has to be more than or equals to 1";
     }
-    return errors;
+    return errorsNow;
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setErrors(validate());
-    if (Object.keys(errors).length === 0) {
-      setIsSubmit(true);
-    }
+  };
+  const handleScan = async () => {
+    console.log(x, y, pname);
 
-    if (isSubmit) {
+    setFormErrors(validate());
+
+    if (Object.keys(formErrors).length === 0) {
       const toSend = {
         projectName: pname,
         scanningMode: mode.toUpperCase(),
@@ -89,7 +91,7 @@ function Form({ navigate }) {
               onChange={(t) => setPname(t.target.value)}
               name="pname"
             />
-            <p>{errors.pname}</p>
+            {formErrors.pname}
           </div>
 
           <div className="input-container" style={{ paddingBottom: 20 }}>
@@ -146,7 +148,7 @@ function Form({ navigate }) {
                 />
               </div>
             </div>
-            <p>{errors.dimension}</p>
+            <p>{formErrors.dimension}</p>
           </div>
           <div className="input-container">
             <label>Scanner Frequency (GHz)</label>
@@ -159,10 +161,15 @@ function Form({ navigate }) {
                   : setFreq(parseFloat(t.target.value))
               }
             />
-            <p>{errors.freq}</p>
+            <p>{formErrors.freq}</p>
           </div>
           <div className="button-container">
-            <input className="scanBtn" type="submit" value="Scan" />
+            <input
+              className="scanBtn"
+              type="submit"
+              value="Scan"
+              onClick={handleScan}
+            />
           </div>
         </form>
       </div>
