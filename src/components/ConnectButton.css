@@ -1,9 +1,10 @@
 button {
+  margin-left: 5px;
   color: white;
   border: none;
   border-radius: 10px;
   line-height: 2;
-  width: 80px;
+  width: 100%;
 }
 
 button:hover {
