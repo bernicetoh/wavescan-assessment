@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<InputPage />} />
+        <Route path="/wavescan" element={<InputPage />} />
       </Routes>
     </div>
   );

@@ -5,7 +5,7 @@ import ViewPage from "./pages/ViewPage";
 
 function RouteSwitch() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Routes>
         <Route path="/" element={<InputPage />} />
         <Route path="/view" element={<ViewPage />} />
