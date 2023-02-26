@@ -1,26 +1,29 @@
 import React, { useState } from "react";
 import "./ConnectButton.css";
 
-function ConnectButton() {
-  const [isConnected, setIsConnected] = useState(false);
+function ConnectButton({ isAvailable }) {
+  const [isAvail, setIsAvail] = useState(isAvailable);
+
   const toggleBtn = () => {
-    if (isConnected) {
-      setIsConnected(false);
+    if (isAvail) {
+      setIsAvail(false);
     } else {
-      setIsConnected(true);
+      setIsAvail(true);
     }
+
+    console.log("toggle");
   };
   return (
     <button
       className={"button"}
       onClick={toggleBtn}
       style={
-        isConnected
+        isAvail
           ? { backgroundColor: "#081464", border: "0.3px solid white" }
           : { backgroundColor: "grey" }
       }
     >
-      {isConnected ? "disconnect" : "connect"}
+      connect
     </button>
   );
 }
