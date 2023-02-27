@@ -4,11 +4,7 @@ import "./Logo.css";
 function Logo() {
   return (
     <div className="logo-container">
-      <a
-        href="https://www.wavescan.sg/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
+      <a href="https://www.wavescan.sg/" target="_blank" rel="noreferrer">
         <div className="img-container">
           <img
             src={require("../images/wavescan-logo.png")}
