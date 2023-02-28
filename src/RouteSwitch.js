@@ -7,8 +7,8 @@ function RouteSwitch() {
   return (
     <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Routes>
-        <Route path="/" element={<InputPage />} />
-        <Route path="/view" element={<ViewPage />} />
+        <Route path="/wavescan-assesment" element={<InputPage />} />
+        <Route path="/wavescan-assesment/view" element={<ViewPage />} />
       </Routes>
     </BrowserRouter>
   );

@@ -2,7 +2,7 @@
   "name": "wavescan",
   "version": "0.1.0",
   "private": false,
-  "homepage": "http://bernicetoh.github.io/wavescan-assesment",
+  "homepage": "https://bernicetoh.github.io/wavescan-assesment",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
