@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/wavescan/static/css/main.d0dcd27f.css",
-    "main.js": "/wavescan/static/js/main.3eeed79a.js",
-    "static/media/wavescan-logo.png": "/wavescan/static/media/wavescan-logo.cf79af6822f5074a4b3e.png",
-    "index.html": "/wavescan/index.html",
-    "main.d0dcd27f.css.map": "/wavescan/static/css/main.d0dcd27f.css.map",
-    "main.3eeed79a.js.map": "/wavescan/static/js/main.3eeed79a.js.map"
+    "main.css": "/wavescan-assesment/static/css/main.2bdc0051.css",
+    "main.js": "/wavescan-assesment/static/js/main.263403c6.js",
+    "static/media/wavescan-logo.png": "/wavescan-assesment/static/media/wavescan-logo.cf79af6822f5074a4b3e.png",
+    "index.html": "/wavescan-assesment/index.html",
+    "main.2bdc0051.css.map": "/wavescan-assesment/static/css/main.2bdc0051.css.map",
+    "main.263403c6.js.map": "/wavescan-assesment/static/js/main.263403c6.js.map"
   },
   "entrypoints": [
-    "static/css/main.d0dcd27f.css",
-    "static/js/main.3eeed79a.js"
+    "static/css/main.2bdc0051.css",
+    "static/js/main.263403c6.js"
   ]
 }
