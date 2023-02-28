@@ -5,10 +5,10 @@ import ViewPage from "./pages/ViewPage";
 
 function RouteSwitch() {
   return (
-    <BrowserRouter basename={process.env.PUBLIC_URL}>
+    <BrowserRouter basename={window.location.pathname || ""}>
       <Routes>
-        <Route path="/wavescan-assesment" element={<InputPage />} />
-        <Route path="/wavescan-assesment/view" element={<ViewPage />} />
+        <Route path="/" element={<InputPage />} />
+        <Route path="/view" element={<ViewPage />} />
       </Routes>
     </BrowserRouter>
   );
