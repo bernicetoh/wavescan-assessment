@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ConnectButton from "./ConnectButton";
 import "./ScannerList.css";
+
 function ScannerList({ navigate }) {
   const [scanners, setScanners] = useState([]);
 
