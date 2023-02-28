@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/wavescan-assesment/static/css/main.2bdc0051.css",
-    "main.js": "/wavescan-assesment/static/js/main.263403c6.js",
-    "static/media/wavescan-logo.png": "/wavescan-assesment/static/media/wavescan-logo.cf79af6822f5074a4b3e.png",
-    "index.html": "/wavescan-assesment/index.html",
-    "main.2bdc0051.css.map": "/wavescan-assesment/static/css/main.2bdc0051.css.map",
-    "main.263403c6.js.map": "/wavescan-assesment/static/js/main.263403c6.js.map"
+    "main.css": "/wavescan-assessment/static/css/main.2bdc0051.css",
+    "main.js": "/wavescan-assessment/static/js/main.b8daa717.js",
+    "static/media/wavescan-logo.png": "/wavescan-assessment/static/media/wavescan-logo.cf79af6822f5074a4b3e.png",
+    "index.html": "/wavescan-assessment/index.html",
+    "main.2bdc0051.css.map": "/wavescan-assessment/static/css/main.2bdc0051.css.map",
+    "main.b8daa717.js.map": "/wavescan-assessment/static/js/main.b8daa717.js.map"
   },
   "entrypoints": [
     "static/css/main.2bdc0051.css",
-    "static/js/main.263403c6.js"
+    "static/js/main.b8daa717.js"
   ]
 }
