@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useState } from "react";
 import "./Form.css";
 
 function Form({ navigate }) {
@@ -19,60 +18,64 @@ function Form({ navigate }) {
   const [formErrors, setFormErrors] = useState({});
 
   const validate = () => {
-    const errorsNow = {};
-
+    let nameError = "";
+    let dimError = "";
+    let freqError = "";
     if (pname.length <= 3) {
-      errorsNow.pname = "Project name has to be more than 3 characters";
+      nameError = "Project name has to be more than 3 characters";
     }
-
     if (x < 1 || y < 1) {
-      errorsNow.dimension = "Dimensions have to be more than or equals to 1";
+      dimError = "Dimensions have to be more than or equals to 1";
     }
     if (freq < 1) {
-      errorsNow.freq = "Scanner frequency has to be more than or equals to 1";
+      freqError = "Scanner frequency has to be more than or equals to 1";
     }
-    return errorsNow;
+    if (nameError || dimError || freqError) {
+      setFormErrors({ nameError, dimError, freqError });
+      return false;
+    }
+    return true;
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-  };
-  const handleScan = async () => {
-    console.log(x, y, pname);
-
-    setFormErrors(validate());
-
-    if (Object.keys(formErrors).length === 0) {
-      const toSend = {
-        projectName: pname,
-        scanningMode: mode.toUpperCase(),
-        scanDimensionsX: x,
-        scanDimensionsY: y,
-        scannerFrequency: freq,
-      };
-      try {
-        const result = await fetch(
-          "https://wavescan-internship.saurabhmudgal.repl.co/submitForm",
-          {
-            method: "POST",
-            body: JSON.stringify(toSend),
-            headers: {
-              "Content-type": "application/json",
-            },
-          }
-        );
-        const statusCode = result.status;
-        if (statusCode === 200) {
-          console.log("success!");
-          navigate("./view", { replace: true });
-        } else {
-          console.log("ERROR 404: bad request");
-        }
-      } catch (e) {
-        console.log(e);
-      }
+    const isValid = validate();
+    if (isValid) {
+      postInput();
+      setFormErrors({});
     } else {
-      alert("Invalid inputs!");
+      console.log("invalid inputs!");
+    }
+  };
+
+  const postInput = async () => {
+    const toSend = {
+      projectName: pname,
+      scanningMode: mode.toUpperCase(),
+      scanDimensionsX: x,
+      scanDimensionsY: y,
+      scannerFrequency: freq,
+    };
+    try {
+      const result = await fetch(
+        "https://wavescan-internship.saurabhmudgal.repl.co/submitForm",
+        {
+          method: "POST",
+          body: JSON.stringify(toSend),
+          headers: {
+            "Content-type": "application/json",
+          },
+        }
+      );
+      const statusCode = result.status;
+      if (statusCode === 200) {
+        console.log("success!");
+        navigate("./view", { replace: true });
+      } else {
+        console.log("ERROR 404: bad request");
+      }
+    } catch (e) {
+      console.log(e);
     }
   };
 
@@ -84,14 +87,14 @@ function Form({ navigate }) {
             handleSubmit(e);
           }}
         >
-          <div className="input-container" style={{ paddingBottom: 20 }}>
+          <div className="input-container">
             <label>Project Name</label>
             <input
               type={"text"}
               onChange={(t) => setPname(t.target.value)}
               name="pname"
             />
-            {formErrors.pname}
+            <p>{formErrors.nameError}</p>
           </div>
 
           <div className="input-container" style={{ paddingBottom: 20 }}>
@@ -148,7 +151,7 @@ function Form({ navigate }) {
                 />
               </div>
             </div>
-            <p>{formErrors.dimension}</p>
+            <p>{formErrors.dimError}</p>
           </div>
           <div className="input-container">
             <label>Scanner Frequency (GHz)</label>
@@ -161,15 +164,10 @@ function Form({ navigate }) {
                   : setFreq(parseFloat(t.target.value))
               }
             />
-            <p>{formErrors.freq}</p>
+            <p>{formErrors.freqError}</p>
           </div>
           <div className="button-container">
-            <input
-              className="scanBtn"
-              type="submit"
-              value="Scan"
-              onClick={handleScan}
-            />
+            <input className="scanBtn" type="submit" value="Scan" />
           </div>
         </form>
       </div>
