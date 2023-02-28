@@ -11,4 +11,4 @@ This web application is:\
 ## Quick Start
 
 This application has been deployed.\
-Visit the live site [here](https://bernicetoh.github.io/wavescan-Assessment/).
+Visit the live site [here](https://bernicetoh.github.io/wavescan-assessment/).
